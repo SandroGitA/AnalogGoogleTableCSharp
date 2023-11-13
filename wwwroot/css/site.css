@@ -38,3 +38,16 @@ table {
 * {
     box-sizing: border-box;
 }
+
+.cell-row{
+    /*font-weight: bold;*/
+
+    padding-left: 2px;
+    padding-right: 2px;
+    padding-top: 1px;
+    padding-bottom: 1px;
+
+    border: 2px;
+    /*border-top-style: solid;*/
+    border-style: solid;
+}

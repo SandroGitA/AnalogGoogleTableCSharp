@@ -10,38 +10,33 @@ for (i = 0; i < 9; i++) {
     let tr = document.createElement('tr')
     tr.classList.add('row')
 
-    //Если "строка" первая, создаем строку без инпутов
-    //и прописываем в ней букву(цифру) строки
-    if (i != 0) {
-        let div = document.createElement('div')
-        div.innerText = i
-        div.style.fontWeight = "bold"    
-        //tr.appendChild(div)
-    }
-
     for (j = 0; j < 9; j++) {
-        //Создаем ячейку таблицы
+        //Создаем "ячейку" таблицы
         let td = document.createElement('td')
         td.classList.add("cell")
+
+        //Если строка не первая и столбец первый,
+        //создаем строку без инпутов
+        //и прописываем в ней букву(цифру) строки
+        if (i > 0 && j == 0) {
+            let divTr = document.createElement('div')
+            divTr.innerText = i            
+            divTr.classList.add("cell-row")
+
+            td.appendChild(divTr)
+        }
+        else {
+            //Создаем поле ввода
+            let input = document.createElement('input')
+
+            //Добавляем это поле в ячейку
+            td.appendChild(input)
+        }
 
         //Определяем позицию каждой ячейки
         let position = `${i}${j}`
         td.id = position
 
-        //Если "столбец" первый, создаем строку без инпутов
-        //и прописываем в ней букву(цифру) столбца
-        if (j != 0) {
-            let div = document.createElement('div')
-            div.innerText = j
-            div.style.fontWeight = "bold"
-            //tr.appendChild(div)
-        }
-
-        //Создаем поле ввода
-        let input = document.createElement('input')                
-
-        //Добавляем это поле в ячейку
-        td.appendChild(input)
         //А потом уже ячейку в саму таблицу
         tr.appendChild(td)
     }
