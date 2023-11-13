@@ -24,6 +24,10 @@ for (i = 0; i < 9; i++) {
         let td = document.createElement('td')
         td.classList.add("cell")
 
+        //Определяем позицию каждой ячейки
+        let position = `${i}${j}`
+        td.id = position
+
         //Если "столбец" первый, создаем строку без инпутов
         //и прописываем в ней букву(цифру) столбца
         if (j != 0) {
