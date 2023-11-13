@@ -15,14 +15,19 @@ for (i = 0; i < 9; i++) {
         let td = document.createElement('td')
         td.classList.add("cell")
 
+        //Div для нумерации строк и столбцов со стилями
+        let divTr = document.createElement('div')
+        divTr.classList.add("cell-row")
+
         //Если строка не первая и столбец первый,
         //создаем строку без инпутов
         //и прописываем в ней букву(цифру) строки
-        if (i > 0 && j == 0) {
-            let divTr = document.createElement('div')
+        if (i == 0) {            
+            divTr.innerText = j            
+            td.appendChild(divTr)
+        }
+        else if (i > 0 && j == 0) {            
             divTr.innerText = i            
-            divTr.classList.add("cell-row")
-
             td.appendChild(divTr)
         }
         else {
