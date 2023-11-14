@@ -34,12 +34,22 @@ for (i = 0; i < 9; i++) {
             //Создаем поле ввода
             let input = document.createElement('input')
             input.type = "text"
-            input.id = `${i}${j}`
+            input.id = `${i}${j}`                      
 
             //Добавляем обработчик события на каждый input на нажатие enter
             input.addEventListener('keydown', function (e) {
-                if (e.keyCode === 13) {                    
-                    console.log(`cell_id=${ input.id }`)
+                if (e.keyCode === 13) {
+                    console.log(`cell_id=${input.id}`)
+                }
+            });
+
+            //Обработчик события на нажатие стрелочек
+            input.addEventListener('keydown', function (e) {
+                if (e.keyCode === 39) {
+                    console.log(`Нажата клавиша "вправо"`)
+                }
+                else if (e.keyCode == 37) {
+                    console.log(`Нажата клавиша "влево"`)
                 }
             });
 
