@@ -15,24 +15,33 @@ for (i = 0; i < 9; i++) {
         let td = document.createElement('td')
         td.classList.add("cell")
 
-        //Div для нумерации строк и столбцов со стилями
+        //div для нумерации строк и столбцов со стилями
         let divTr = document.createElement('div')
         divTr.classList.add("cell-row")
 
         //Если строка не первая и столбец первый,
-        //создаем строку без инпутов
+        //создаем строку без input
         //и прописываем в ней букву(цифру) строки
-        if (i == 0) {            
-            divTr.innerText = j            
+        if (i == 0) {
+            divTr.innerText = j
             td.appendChild(divTr)
         }
-        else if (i > 0 && j == 0) {            
-            divTr.innerText = i            
+        else if (i > 0 && j == 0) {
+            divTr.innerText = i
             td.appendChild(divTr)
         }
         else {
             //Создаем поле ввода
             let input = document.createElement('input')
+            input.type = "text"
+            input.id = `${i}${j}`
+
+            //Добавляем обработчик события на каждый input на нажатие enter
+            input.addEventListener('keydown', function (e) {
+                if (e.keyCode === 13) {                    
+                    console.log(`cell_id=${ input.id }`)
+                }
+            });
 
             //Добавляем это поле в ячейку
             td.appendChild(input)
