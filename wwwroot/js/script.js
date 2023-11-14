@@ -4,6 +4,10 @@ let mainDiv = document.getElementsByClassName("mainDiv")
 let mainTable = document.createElement('table')
 mainTable.style.borderCollapse = "collapse"
 
+//Работа с сетью
+let URL = "https://localhost:7136/api/v1/"
+let xhr = new XMLHttpRequest();
+
 //Обходим циклом "массив" элементов
 for (i = 0; i < 9; i++) {
     //Создаем "строку"
@@ -34,12 +38,23 @@ for (i = 0; i < 9; i++) {
             //Создаем поле ввода
             let input = document.createElement('input')
             input.type = "text"
-            input.id = `${i}${j}`                      
+            input.id = `${i}${j}`
 
             //Добавляем обработчик события на каждый input на нажатие enter
             input.addEventListener('keydown', function (e) {
                 if (e.keyCode === 13) {
                     console.log(`cell_id=${input.id}`)
+
+                    let bodyRequest = JSON.stringify({
+                        id: input.id,
+                        text: input.value                        
+                    });
+
+                    console.log(bodyRequest)
+
+                    //Работа с самим запросом
+                    xhr.open('post', URL)
+                    xhr.send(bodyRequest)
                 }
             });
 
