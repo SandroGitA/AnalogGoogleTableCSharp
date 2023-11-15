@@ -4,9 +4,8 @@ let mainDiv = document.getElementsByClassName("mainDiv")
 let mainTable = document.createElement('table')
 mainTable.style.borderCollapse = "collapse"
 
-//Работа с сетью
+//URL, на который посылаются запросы
 let URL = "https://localhost:7136/api/v1/"
-let xhr = new XMLHttpRequest();
 
 //Обходим циклом "массив" элементов
 for (i = 0; i < 9; i++) {
@@ -38,35 +37,7 @@ for (i = 0; i < 9; i++) {
             //Создаем поле ввода
             let input = document.createElement('input')
             input.type = "text"
-            input.id = `${i}${j}`
-
-            //Добавляем обработчик события на каждый input на нажатие enter
-            input.addEventListener('keydown', function (e) {
-                if (e.keyCode === 13) {
-                    console.log(`cell_id=${input.id}`)
-
-                    let bodyRequest = JSON.stringify({
-                        id: input.id,
-                        text: input.value                        
-                    });
-
-                    console.log(bodyRequest)
-
-                    //Работа с самим запросом
-                    xhr.open('post', URL)
-                    xhr.send(bodyRequest)
-                }
-            });
-
-            //Обработчик события на нажатие стрелочек
-            input.addEventListener('keydown', function (e) {
-                if (e.keyCode === 39) {
-                    console.log(`Нажата клавиша "вправо"`)
-                }
-                else if (e.keyCode == 37) {
-                    console.log(`Нажата клавиша "влево"`)
-                }
-            });
+            input.id = `${i}${j}`            
 
             //Определяем позицию каждой ячейки            
             td.id = `${i}${j}`
@@ -74,7 +45,7 @@ for (i = 0; i < 9; i++) {
             //Добавляем это поле в ячейку
             td.appendChild(input)
         }
-        
+
         //А потом уже ячейку в саму таблицу
         tr.appendChild(td)
     }
@@ -84,3 +55,50 @@ for (i = 0; i < 9; i++) {
 
 //Добавляем таблицу в главный div
 mainDiv[0].appendChild(mainTable)
+
+//Ищем все input для events
+let inputEvets = document.querySelector('table');
+inputEvets.addEventListener('input', (event) => {
+    //if (e.keyCode === 13)
+    const input = event.target;
+    const value = input.value;
+    console.log(`cell_id=${input.id}`)
+})
+
+//Добавляем обработчик события на каждый input на нажатие enter
+/*input.addEventListener('keydown', function (e) {
+    if (e.keyCode === 13) {
+        console.log(`cell_id=${input.id}`)
+
+        //Собираем объект, для отправки данных на сервер
+        let bodyRequest = JSON.stringify({
+            id_cell: {
+                id: input.id
+            },
+            data: {
+                text: input.value
+            }
+        });
+
+        console.log(bodyRequest)
+
+        //Формируем post запрос на сервер с данными
+        let response = fetch(URL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8'
+            },
+            body: bodyRequest
+        });
+    }
+});
+
+//Обработчик события на нажатие стрелочек
+input.addEventListener('keydown', function (e) {
+    if (e.keyCode === 39) {
+        console.log(`Нажата клавиша "вправо"`)
+    }
+    else if (e.keyCode == 37) {
+        console.log(`Нажата клавиша "влево"`)
+    }
+});*/
