@@ -24,9 +24,9 @@ namespace AnalogGoogleTableCSharp.Controllers
 
         // POST api/<ValuesController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post([FromBody] JSONTableObject value)
         {
-            //var request = HttpContext.Request.Headers;
+            var request = value;
         }
 
         // PUT api/<ValuesController>/5
@@ -40,5 +40,5 @@ namespace AnalogGoogleTableCSharp.Controllers
         public void Delete(int id)
         {
         }
-    }
+    }    
 }
