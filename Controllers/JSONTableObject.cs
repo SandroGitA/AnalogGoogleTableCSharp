@@ -1,5 +1,6 @@
 ﻿namespace AnalogGoogleTableCSharp.Controllers
 {
+    //Класс для привязки модели к запросу
     public class JSONTableObject
     {
         public id_cell ID_cell { get; set; }
