@@ -58,28 +58,30 @@ mainDiv[0].appendChild(mainTable)
 
 //Ищем все input для events
 let inputEvets = document.querySelector('table');
-inputEvets.addEventListener('input', (event) => {
-    //if (e.keyCode === 13)
-    const input = event.target;
-    const value = input.value;
-    console.log(`cell_id=${input.id}`)
+inputEvets.addEventListener('keydown', (event) => {
+    if (event.keyCode === 13) {
+        const input = event.target;
+        const value = input.value;
+        console.log(`cell_id=${input.id}`)
+        console.log(`data=${input.value}`)
 
-    //Собираем объект, для отправки данных на сервер
-    let bodyRequest = JSON.stringify({
-        id_cell: {
-            id: input.id
-        },
-        data: {
-            text: input.value
-        }
-    });
+        //Собираем объект, для отправки данных на сервер
+        let bodyRequest = JSON.stringify({
+            id_cell: {
+                id: input.id
+            },
+            data: {
+                text: input.value
+            }
+        });        
 
-    //Формируем post запрос на сервер с данными
-    let response = fetch(URL, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json;charset=utf-8'
-        },
-        body: bodyRequest
-    });
+        //Формируем post запрос на сервер с данными
+        let response = fetch(URL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8'
+            },
+            body: bodyRequest
+        });
+    }
 })
