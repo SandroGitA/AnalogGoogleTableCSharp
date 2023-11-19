@@ -63,42 +63,23 @@ inputEvets.addEventListener('input', (event) => {
     const input = event.target;
     const value = input.value;
     console.log(`cell_id=${input.id}`)
+
+    //Собираем объект, для отправки данных на сервер
+    let bodyRequest = JSON.stringify({
+        id_cell: {
+            id: input.id
+        },
+        data: {
+            text: input.value
+        }
+    });
+
+    //Формируем post запрос на сервер с данными
+    let response = fetch(URL, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json;charset=utf-8'
+        },
+        body: bodyRequest
+    });
 })
-
-//Добавляем обработчик события на каждый input на нажатие enter
-/*input.addEventListener('keydown', function (e) {
-    if (e.keyCode === 13) {
-        console.log(`cell_id=${input.id}`)
-
-        //Собираем объект, для отправки данных на сервер
-        let bodyRequest = JSON.stringify({
-            id_cell: {
-                id: input.id
-            },
-            data: {
-                text: input.value
-            }
-        });
-
-        console.log(bodyRequest)
-
-        //Формируем post запрос на сервер с данными
-        let response = fetch(URL, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json;charset=utf-8'
-            },
-            body: bodyRequest
-        });
-    }
-});
-
-//Обработчик события на нажатие стрелочек
-input.addEventListener('keydown', function (e) {
-    if (e.keyCode === 39) {
-        console.log(`Нажата клавиша "вправо"`)
-    }
-    else if (e.keyCode == 37) {
-        console.log(`Нажата клавиша "влево"`)
-    }
-});*/
