@@ -22,11 +22,14 @@ for (i = 0; i < 9; i++) {
         let divTr = document.createElement('div')
         divTr.classList.add("cell-row")
 
+        //Массив букв для наименования столбцов
+        let arrayChar = Array.from("ABCDEFGHIJKLM")
+
         //Если строка не первая и столбец первый,
         //создаем строку без input
-        //и прописываем в ней букву(цифру) строки
-        if (i == 0) {
-            divTr.innerText = j
+        //и прописываем в ней букву(цифру) строки        
+        if (i == 0 && j != 0) {
+            divTr.innerText = arrayChar[j - 1]
             td.appendChild(divTr)
         }
         else if (i > 0 && j == 0) {
@@ -37,10 +40,11 @@ for (i = 0; i < 9; i++) {
             //Создаем поле ввода
             let input = document.createElement('input')
             input.type = "text"
-            input.id = `${i}${j}`            
+            //input.id = `${i}${j}`\
+            input.id = `${arrayChar[j - 1]}${i}`
 
             //Определяем позицию каждой ячейки            
-            td.id = `${i}${j}`
+            td.id = `${arrayChar[j - 1]}${i}`
 
             //Добавляем это поле в ячейку
             td.appendChild(input)
@@ -73,7 +77,7 @@ inputEvets.addEventListener('keydown', (event) => {
             data: {
                 text: input.value
             }
-        });        
+        });
 
         //Формируем post запрос на сервер с данными
         let response = fetch(URL, {
