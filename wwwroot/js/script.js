@@ -39,11 +39,8 @@ for (i = 0; i < 9; i++) {
         else {
             //Создаем поле ввода
             let input = document.createElement('input')
-            input.type = "text"            
+            input.type = "text"
             input.id = `${arrayChar[j - 1]}${i}`
-
-            //Определяем позицию каждой ячейки            
-            td.id = `${i}${j}`
 
             //Добавляем это поле в ячейку
             td.appendChild(input)
@@ -59,12 +56,13 @@ for (i = 0; i < 9; i++) {
 //Добавляем таблицу в главный div
 mainDiv[0].appendChild(mainTable)
 
-//Ищем все input для events
-let inputEvets = document.querySelector('table');
-inputEvets.addEventListener('keydown', (event) => {
+//Ищем все input для events с помощью "всплытия"
+let TableInputEvents = document.querySelector('table');
+TableInputEvents.addEventListener('keydown', (event) => {
     if (event.keyCode === 13) {
         const input = event.target;
-        const value = input.value;
+
+        //const value = input.value;
         console.log(`cell_id=${input.id}`)
         console.log(`data=${input.value}`)
 
@@ -90,7 +88,7 @@ inputEvets.addEventListener('keydown', (event) => {
 })
 
 //Обработчик выделения ячейки, если в ней есть формула
-inputEvets.addEventListener('input', (event) => {
+TableInputEvents.addEventListener('input', (event) => {
     //Получаем значение ячейки
     let data = Array.from(event.target.value)
     console.log(data)
