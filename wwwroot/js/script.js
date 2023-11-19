@@ -39,12 +39,11 @@ for (i = 0; i < 9; i++) {
         else {
             //Создаем поле ввода
             let input = document.createElement('input')
-            input.type = "text"
-            //input.id = `${i}${j}`\
+            input.type = "text"            
             input.id = `${arrayChar[j - 1]}${i}`
 
             //Определяем позицию каждой ячейки            
-            td.id = `${arrayChar[j - 1]}${i}`
+            td.id = `${i}${j}`
 
             //Добавляем это поле в ячейку
             td.appendChild(input)
@@ -87,5 +86,18 @@ inputEvets.addEventListener('keydown', (event) => {
             },
             body: bodyRequest
         });
+    }
+})
+
+//Обработчик выделения ячейки, если в ней есть формула
+inputEvets.addEventListener('input', (event) => {
+    //Получаем значение ячейки
+    let data = Array.from(event.target.value)
+    console.log(data)
+
+    if (data[0] === '=') {
+        console.log('Формула')
+        //Если формула, то следующий симол должен начинаться с $,
+        //и указание координаты ячейки, например B4, A1, C7
     }
 })
