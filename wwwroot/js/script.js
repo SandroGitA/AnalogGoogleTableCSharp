@@ -37,19 +37,26 @@ for (i = 0; i < 9; i++) {
             td.appendChild(divTr)
         }
         else {
-            //Создаем поле ввода
-            let input = document.createElement('input')
-            input.type = "text"
-            input.id = `${arrayChar[j - 1]}${i}`
+            if (i == 0 && j == 0) {
+                divTr.innerText = "f(x)"
+                td.appendChild(divTr)
+            }
+            else {
+                //Создаем поле ввода
+                let input = document.createElement('input')
+                input.type = "text"
+                input.id = `${arrayChar[j - 1]}${i}`
 
-            //Добавляем это поле в ячейку
-            td.appendChild(input)
+                //Добавляем этот input в ячейку
+                td.appendChild(input)
+            }
         }
 
         //А потом уже ячейку в саму таблицу
         tr.appendChild(td)
     }
 
+    //добавляем строку в саму таблицу
     mainTable.appendChild(tr)
 }
 
