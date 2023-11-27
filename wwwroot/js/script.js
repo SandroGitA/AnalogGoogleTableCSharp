@@ -64,8 +64,8 @@ for (i = 0; i < 9; i++) {
 mainDiv[0].appendChild(mainTable)
 
 //Ищем все input для events с помощью "всплытия"
-let TableInputEvents = document.querySelector('table');
-TableInputEvents.addEventListener('keydown', (event) => {
+let tableInputEvents = document.querySelector('table');
+tableInputEvents.addEventListener('keydown', (event) => {
     if (event.keyCode === 13) {
         const input = event.target;
 
@@ -95,7 +95,7 @@ TableInputEvents.addEventListener('keydown', (event) => {
 })
 
 //Обработчик выделения ячейки, если в ней есть формула
-TableInputEvents.addEventListener('input', (event) => {
+tableInputEvents.addEventListener('input', (event) => {
     //Получаем значение ячейки
     let data = Array.from(event.target.value)
     console.log(data)
