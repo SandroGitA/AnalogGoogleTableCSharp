@@ -15,20 +15,16 @@ namespace AnalogGoogleTableCSharp.Controllers
         public static string database = "master";
         public static int port = 1433;
 
-        public static string connectionString = $"server = {server}; username = {username}; password = {password}; database = {database}; port = {port}";
-        public string connectionStatus = "";        
-
-        /// <summary>
-        /// Конструктор
-        /// </summary>
-        //public SQLConnect() { }
+        public static string connectionString = $"server = {server}; username = {username}; " +
+            $"password = {password}; database = {database}; port = {port}";
+        public string connectionStatus = "";
 
         /// <summary>
         /// Метод для подключения к БД
         /// </summary>
         /// <returns></returns>
         public MySqlConnection ReturnSQLConnection()
-        {                        
+        {
             MySqlConnection mySqlConnection = new MySqlConnection(connectionString);
 
             try
