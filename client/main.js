@@ -5,14 +5,7 @@ let mainTable = document.createElement('table')
 mainTable.style.borderCollapse = "collapse"
 
 //URL, на который посылаются запросы
-let url = "https://localhost:7136/api/v1/"
-
-//Объявляем количество строк и столбцов
-let row = 9;
-let column = 9;
-
-//Двумерный массив для отрисовки таблицы
-let mainArray: number[][];
+let URL = "https://localhost:7136/api/v1/"
 
 //Обходим циклом "массив" элементов
 for (let i = 0; i < 9; i++) {
@@ -40,7 +33,7 @@ for (let i = 0; i < 9; i++) {
             td.appendChild(divTr)
         }
         else if (i > 0 && j == 0) {
-            divTr.innerText = i.toString()
+            divTr.innerText = i
             td.appendChild(divTr)
         }
         else {
@@ -72,41 +65,39 @@ mainDiv[0].appendChild(mainTable)
 
 //Ищем все input для events с помощью "всплытия"
 let tableInputEvents = document.querySelector('table');
-tableInputEvents?.addEventListener('keydown', (event) => {
+tableInputEvents.addEventListener('keydown', (event) => {
     if (event.keyCode === 13) {
-        const input = event.target as HTMLInputElement
+        const input = event.target;
 
         //const value = input.value;
-        console.log(`cell_id=${input?.id}`)
-        console.log(`data=${input?.value}`)
+        console.log(`cell_id=${input.id}`)
+        console.log(`data=${input.value}`)
 
         //Собираем объект, для отправки данных на сервер
         let bodyRequest = JSON.stringify({
             id_cell: {
-                id: input!.id
+                id: input.id
             },
             data: {
-                text: input!.value
+                text: input.value
             }
         });
 
         //Формируем post запрос на сервер с данными
-        let response = fetch(url, {
+        let response = fetch(URL, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json;charset=utf-8'
             },
             body: bodyRequest
         });
-
-        console.log(response)
     }
 })
 
 //Обработчик выделения ячейки, если в ней есть формула
-tableInputEvents!.addEventListener('input', (event) => {
-    //Получаем значение ячейки        
-    let data = Array.from((event.target as HTMLInputElement)?.value)
+tableInputEvents.addEventListener('input', (event) => {
+    //Получаем значение ячейки
+    let data = Array.from(event.target.value)
     console.log(data)
 
     if (data[0] === '=') {
