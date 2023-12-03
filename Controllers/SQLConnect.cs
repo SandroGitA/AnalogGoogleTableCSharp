@@ -8,35 +8,36 @@ namespace AnalogGoogleTableCSharp.Controllers
     /// </summary>
     public class SQLConnect
     {
-        public string username;
-        public string password;
+        public static string username = "skycote";
+        public static string password = "SkyCote36";
 
-        public string server = "localhost";
-        public string database_name = "DataTable";
-        public int port;
+        public static string server = "192.168.0.5";
+        public static string database = "master";
+        public static int port = 1433;
 
-        public string conncetionString = "";
-        public string connectrionStatus = "";
+        public static string connectionString = $"server = {server}; username = {username}; password = {password}; database = {database}; port = {port}";
+        public string connectionStatus = "";        
 
         /// <summary>
         /// Конструктор
         /// </summary>
-        SQLConnect() { }
+        //public SQLConnect() { }
 
         /// <summary>
         /// Метод для подключения к БД
         /// </summary>
         /// <returns></returns>
         public MySqlConnection ReturnSQLConnection()
-        {
-            MySqlConnection mySqlConnection = new MySqlConnection(conncetionString);
+        {                        
+            MySqlConnection mySqlConnection = new MySqlConnection(connectionString);
+
             try
             {
                 mySqlConnection.Open();
             }
-            catch (Exception e)
+            catch (MySqlException e)
             {
-                connectrionStatus = e.Message;
+                connectionStatus = e.Message;
             }
 
             return mySqlConnection;

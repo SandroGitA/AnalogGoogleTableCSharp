@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="MySql.Data" Version="8.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Update="wwwroot\js\script.js">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Content>
