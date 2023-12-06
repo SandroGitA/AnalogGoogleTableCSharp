@@ -12,7 +12,7 @@ namespace AnalogGoogleTableCSharp.Controllers
         [HttpGet]
         public IEnumerable<string> Get()
         {
-            SQLConnect connect = new SQLConnect();
+            SQLConnect connect = new SQLConnect();            
             var str = connect.ReturnSQLConnection();
 
             return new string[] { "value1", "value2" };
