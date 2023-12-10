@@ -3,17 +3,23 @@
     //Класс для привязки модели к запросу
     public class JSONTableObject
     {
-        public id_cell ID_cell { get; set; }
-        public data Data { get; set; }
+        public CellCoordinate cc { get; set; }
+        public CellData cd { get; set; }
 
-        public class id_cell
+        /// <summary>
+        /// Класс для значения координаты
+        /// </summary>
+        public class CellCoordinate
         {
-            public int id { get; set; }
+            public int cell_coordinate { get; set; }
         }
 
-        public class data
+        /// <summary>
+        /// Класс для значении ячейки
+        /// </summary>
+        public class CellData
         {
-            public string text { get; set; }
+            public string cell_data { get; set; }
         }
     }
 }
